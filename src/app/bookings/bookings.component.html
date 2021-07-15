@@ -1,5 +1,5 @@
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+<div class="list-group" *ngFor="let booking of bookings">
+    <a href="#" class="mb-2 list-group-item list-group-item-action" aria-current="true">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{booking.name}}</h5>
         <small>{{booking.id}}</small>
