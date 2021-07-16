@@ -29,7 +29,14 @@ export class CreateBookingComponent implements OnInit {
   }
 
   save(): void {
-    Bookings.push(this.booking);
+    var bookingById = Bookings.find(x => x.id == this.booking.id);
+
+    if(bookingById == null || bookingById == undefined){
+      Bookings.push(this.booking);
+    } else {
+      bookingById = this.booking;
+    }
+
     this.router.navigate(['bookings']);
   }
 
