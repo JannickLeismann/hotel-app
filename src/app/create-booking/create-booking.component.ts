@@ -32,4 +32,14 @@ export class CreateBookingComponent implements OnInit {
     Bookings.push(this.booking);
     this.router.navigate(['bookings']);
   }
+
+  dateChanged(event: Event, isStart: boolean){
+    var val = (event.target as HTMLInputElement).value;
+
+    if(isStart){
+      this.booking.startDate = new Date(val);
+    } else {
+      this.booking.endDate = new Date(val);
+    }
+  }
 }
