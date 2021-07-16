@@ -8,7 +8,10 @@ const routes: Routes = [
     path:'bookings', component:BookingsComponent
   },
   {
-    path:'createBooking', component:CreateBookingComponent
+    path:'create', component:CreateBookingComponent
+  },
+  {
+    path:'edit/:id', component:CreateBookingComponent
   },
   {
     path:'', redirectTo:'bookings', pathMatch:'full'
