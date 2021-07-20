@@ -23,17 +23,13 @@ export class BookingService {
     return response;
   }
 
-  getBookingById(id: number) : Booking {
-    var bookingById = Bookings.find(x => x.id == id)!;
-    return bookingById;
+  getBookingById(id: number) : Observable<Booking> {
+    var response = this.httpClient.get<Booking>(this.bookingsUrl + "/" + id);
+    return response;
   }
 
-  addBooking(booking: Booking) : void {
-    Bookings.push(booking);
-  }
-
-  updateBooking(booking: Booking) : void {
-    var currentBooking = this.getBookingById(booking.id);
-    currentBooking = booking;
+  addBooking(booking: Booking) : Observable<Booking> {
+    var response = this.httpClient.post<Booking>(this.bookingsUrl, booking);
+    return response;
   }
 }
