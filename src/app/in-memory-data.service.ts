@@ -39,7 +39,7 @@ export class InMemoryDataService implements InMemoryDbService  {
       }
     ]
 
-    return bookings;
+    return {bookings};
   }
 
   constructor() { }

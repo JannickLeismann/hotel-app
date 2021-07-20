@@ -15,7 +15,9 @@ export class BookingsComponent implements OnInit {
   bookings : Booking[] = [];
 
   ngOnInit(): void {
-    this.bookings = this.bookingService.getBookings();
+    this.bookingService.getBookings().subscribe((result) => {
+      this.bookings = result;
+    });
   }
 
   deleteBooking(booking: Booking) : void {
