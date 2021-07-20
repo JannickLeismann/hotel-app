@@ -34,14 +34,7 @@ export class CreateBookingComponent implements OnInit {
   }
 
   save(): void {
-    this.bookingService.getBookingById(this.booking.id).subscribe((result) => {
-      console.log(result);
-    })
-
-    this.bookingService.addBooking(this.booking).subscribe((result) => {
-      console.log(result);
-    });  
-
+    this.bookingService.addBooking(this.booking).subscribe();  
     this.router.navigate(['bookings']);
   }
 
