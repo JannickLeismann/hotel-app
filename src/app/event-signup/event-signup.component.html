@@ -1,5 +1,5 @@
 <form #formSignup="ngForm">
-    <div class="card bg-dark text-white">
+    <div class="card text-white bg-dark">
         <div class="card-header">
             <h5>Event Benachrichtigung</h5>
         </div>  
@@ -13,9 +13,19 @@
 
             <div *ngIf="inputEmail.invalid && (inputEmail.touched || inputEmail.dirty)" class="row mb-2">
                 <div class="col">
-                    <div class="alert alert-danger">
-                        Etwas ist schief gelaufen
+
+                    <div *ngIf="inputEmail.errors?.required" class="alert alert-danger">
+                        E-Mail Adresse ist erforderlich.
                     </div>
+
+                    <div *ngIf="inputEmail.errors?.minlength" class="alert alert-danger">
+                        Es sind mindestens 8 Zeichen notwendig.
+                    </div>
+
+                    <div *ngIf="inputEmail.errors?.email && !inputEmail.hasError('minlength')" class="alert alert-danger">
+                        Das ist keine gültige E-Mail Adresse.
+                    </div>
+
                 </div>
             </div>
         </div>  
