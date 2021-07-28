@@ -3,48 +3,56 @@
         <h5>Create new Booking</h5>
     </div>
 
-    <div class="card-body">
-        <form>
-            <div class="row mb-2">
-                <div class="col">
-                    <!--Id-->
-                    <label class="form-label">Id</label>
-                    <input type="number" [(ngModel)]="booking.id" name="Id" class="form-control" />
+    <form [formGroup]="bookingForm" (ngSubmit)="save()">
+        <div class="card-body">        
+                <div class="row mb-2">
+                    <div class="col">
+                        <!--Id-->
+                        <label class="form-label">Id</label>
+                        <input type="number" formControlName="id" class="form-control" />
+                    </div>
+            
+                    <div class="col"> 
+                        <!--RoomNumber-->
+                        <label class="form-label">Roomnumber</label>
+                        <input type="number" formControlName="roomNumber"  class="form-control" />
+                    </div>
                 </div>
-        
-                <div class="col"> 
-                    <!--RoomNumber-->
-                    <label class="form-label">Roomnumber</label>
-                    <input type="number" [(ngModel)]="booking.roomNumber" name="Roomnumber"  class="form-control" />
+            
+                <div class="row mb-2">
+                    <div class="col-4">
+                        <!--Name-->
+                        <label class="form-label">Guest Name</label>
+                        <input type="text" formControlName="name" class="form-control" />
+                    </div>
                 </div>
-            </div>
-        
-            <div class="row mb-2">
-                <div class="col-4">
-                    <!--Name-->
-                    <label class="form-label">Guest Name</label>
-                    <input type="text" [(ngModel)]="booking.name" name="Name" class="form-control" />
-                </div>
-            </div>
-        
-            <div class="row">
-                <div class="col">
-                    <!--StartDate-->            
-                    <label class="form-label">Start Date</label>
-                    <input type="date" [value]="booking.startDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, true)" class="form-control" />
-                </div>
-        
-                <div class="col">
-                    <!--EndDate-->
-                    <label class="form-label">End Date</label>
-                    <input type="date" [value]="booking.endDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, false)" class="form-control" />
-                </div>
-            </div>
-        
-        </form>
-    </div>
 
-    <div class="card-footer">
-        <button (click)="save()" class="btn btn-primary">Submit</button>
-    </div>
+                <div class="row mb-2">
+                    <div class="col-4">
+                        <div *ngIf="bookingForm.get('name')?.hasError('minlength')" class="text-danger">
+                            *Der Name ist zu kurz                            
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col">
+                        <!--StartDate-->            
+                        <label class="form-label">Start Date</label>
+                        <input type="date" formControlName="startDate"  [value]="booking.startDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, true)" class="form-control" />
+                    </div>
+            
+                    <div class="col">
+                        <!--EndDate-->
+                        <label class="form-label">End Date</label>
+                        <input type="date" formControlName="endDate" [value]="booking.endDate | date:'yyyy-MM-dd'" (input)="dateChanged($event, false)" class="form-control" />
+                    </div>
+                </div>           
+        </div>
+
+        <div class="card-footer">
+            <button [disabled]="bookingForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
 </div>
