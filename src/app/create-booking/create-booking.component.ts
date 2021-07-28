@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Booking } from '../booking';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BookingService } from '../booking.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-booking',
@@ -13,7 +14,8 @@ export class CreateBookingComponent implements OnInit {
   constructor(
      private router: Router,
      private activatedRoute: ActivatedRoute,
-     private bookingService:BookingService) { }
+     private bookingService:BookingService,
+     private formbuilder : FormBuilder) { }
 
   booking: Booking = {
     id: 100,
