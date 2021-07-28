@@ -1,1 +1,27 @@
-<p>event-signup works!</p>
+<form #formSignup="ngForm">
+    <div class="card bg-dark text-white">
+        <div class="card-header">
+            <h5>Event Benachrichtigung</h5>
+        </div>  
+
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col">
+                    <input #inputEmail="ngModel" minlength=8 email name="signupMail" [(ngModel)]="signupMail" required class="form-control" placeholder="Bitte E-Mail Adresse eintragen" >
+                </div>
+            </div>
+
+            <div *ngIf="inputEmail.invalid && (inputEmail.touched || inputEmail.dirty)" class="row mb-2">
+                <div class="col">
+                    <div class="alert alert-danger">
+                        Etwas ist schief gelaufen
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <div class="card-footer">
+            <button [disabled]="formSignup.invalid" (click)="onSubmit()" class="btn btn-primary">Eintragen</button>
+        </div>
+    </div>
+</form>

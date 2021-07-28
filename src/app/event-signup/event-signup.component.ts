@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventSignupComponent implements OnInit {
 
+  signupMail : string = "";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    console.log("Form gesendet");
   }
 
 }
